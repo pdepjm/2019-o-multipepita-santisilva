@@ -12,6 +12,37 @@ object pepita {
 	method come(comida) {
 		energia = energia + comida.energiaQueOtorga()
 	}
+	
+	method estaFeliz(){
+		return energia.between(500,1000) 
+	}
+	
+	method vueloExtra1(){
+		if(energia.between(200,400)){
+			return 10
+		}
+	return 0
+	}
+	
+	method vueloExtra2(){
+		if(energia % 20 == 0){
+			return 15
+		}
+		return 0
+	}
+	
+	method cuantoQuiereVolar(){
+		var vuelaDeBase = energia/5
+		var vuelaExtra = self.vueloExtra1() + self.vueloExtra2()
+		return vuelaDeBase + vuelaExtra
+	}
+	
+	method salirAComer(){
+		self.vola(5)
+		self.come(alpiste)
+		self.vola(5)
+	}
+
 }
 
 object alpiste {
@@ -24,6 +55,23 @@ object alpiste {
 	method gramos(nuevosGramos) {
 		gramos = nuevosGramos
 	}	
+}
+
+object mijo{
+	var mojado = false
+	
+	method energiaQueOtorga(){
+		if(mojado){
+			return 15
+		}
+		return 20
+	}
+	method mojarse(){
+		mojado = true
+	}
+	method secarse(){
+		mojado = false
+	}
 }
 
 object manzana {
